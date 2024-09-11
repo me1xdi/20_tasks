@@ -1,270 +1,334 @@
-import java.util.Locale;
+import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import  java.util.Arrays;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+
+//        1. Функция для нахождения максимума
+////        Напишите функцию, которая принимает два числа и возвращает максимальное из них. Если числа равны, выбрасывайте исключение с сообщением об ошибке.
+//        Scanner in = new Scanner(System.in);
+//        int a = in.nextInt();
+//        int b = in.nextInt();
+//        System.out.println(getMax(a, b));
 
 
-        /*Задача 1: Четное или нечетное число
-        Условие:
-        Пользователь вводит целое число. Программа должна вывести, является ли это число четным или нечетным.*/
-        Scanner scan =   new Scanner(System.in);
-        int a = scan.nextInt();
-        if (a%2==0)
-            System.out.printf("Число %d является четным.", a);
-        else
-            System.out.printf("Число %d является нечетным.", a);
-
-        /*Задача 2: Минимальное из трех чисел
-        Условие:
-        Пользователь вводит три целых числа. Программа должна найти и вывести минимальное из них.*/
-//        Scanner scan = new Scanner(System.in);
-//        int a = scan.nextInt();
-//        int b = scan.nextInt();
-//        int c = scan.nextInt();
-//        System.out.println("Минимальное число: " + Math.min(Math.min(a, b), c));
-
-        /*Задача 3: Таблица умножения
-        Условие:
-        Напишите программу, которая выводит таблицу умножения на 5 (от 1 до 10).*/
-//        for(int i=1; i<=10; i++){
-//            System.out.println(5*i);
-//        }
-
-        /*Задача 4: Сумма чисел от 1 до N
-        Условие:
-        Пользователь вводит целое число N. Программа должна вывести сумму всех чисел от 1 до N.*/
-//        Scanner scan = new Scanner(System.in);
-//        int n = scan.nextInt();
-//        int sum = 0;
-//        for (int j = 1; j<=n; j++){
-//            sum += j;
-//        }
-//        System.out.println(sum);
-
-        /*Задача 5: Число Фибоначчи
-        Условие:
-        Пользователь вводит целое число N. Программа должна вывести первые N чисел Фибоначчи.*/
-//        Scanner scan = new Scanner(System.in);
-//        int n =scan.nextInt();
-//        int x0 = 0; // 1ое число последовательности
-//        int x1 = 1; // 2ое число последовательности
-//        int x; // последующее число последовательности
-//        System.out.print(x0 + " " + x1 + " ");
-//        for (int j = 3; j <=n; j++){
-//            x= x0+x1;
-//            System.out.print(x + " ");
-//            x0 = x1;
-//            x1 = x;
-//        }
-
-        /*Задача 6: Проверка простого числа
-        Условие:
-        Пользователь вводит целое число. Программа должна проверить, является ли это число простым (делится только на 1 и само на себя).*/
-//        Scanner scan = new Scanner(System.in);
-//        int n = scan.nextInt();
-//        for (int j = 2; j<n; j++){
-//            if (n%j==0) {
-//                System.out.printf("Число %d не является простым.", n);
-//                break;
-//            }
+//        2. Калькулятор деления
+//        Создайте функцию для деления двух чисел. Если делитель равен нулю, выбрасывайте ArithmeticException с сообщением о недопустимости деления на ноль.
 //
-//            else {
-//                System.out.printf("Число %d является простым.", n);
-//                break;
-//            }
+//        Scanner in = new Scanner(System.in);
+//        double a = in.nextInt();
+//        double b = in.nextInt();
+//        System.out.println(division(a, b));
+
+
+//        3. Конвертер строк в числа
+//        Напишите функцию, которая принимает строку и пытается конвертировать её в целое число. Если строка не может быть конвертирована, выбрасывайте NumberFormatException.
+//        Scanner in = new Scanner(System.in);
+//        String str = in.nextLine();
+//        System.out.println(stringConvert(str));
+
+
+
+//        4. Проверка возраста
+//        Создайте функцию, которая принимает возраст и выбрасывает IllegalArgumentException, если возраст меньше нуля или больше 150.
+
+//        Scanner in = new Scanner(System.in);
+//        int a = in.nextInt();
+//        System.out.println("Возраст - " + age(a));
 //
-//        }
-
-        /*Задача 7: Обратный порядок чисел
-        Условие:
-        Пользователь вводит целое число N. Программа должна вывести числа от N до 1 в обратном порядке.*/
-//        Scanner scan = new Scanner(System.in);
-//        int n = scan.nextInt();
-//        for (int j = n; j>0; j--) System.out.println(j);
-
-        /*Задача 8: Сумма четных чисел
-        Условие:
-        Пользователь вводит два целых числа A и B. Программа должна найти сумму всех четных чисел в диапазоне от A до B (включительно).*/
-//        Scanner scan = new Scanner(System.in);
-//        int a = scan.nextInt();
-//        int b = scan.nextInt();
-//        int sum = 0;
-//        for (int j = a; j<=b; j++) {
-//            if (j%2==0) sum +=j;
+//        5. Нахождение корня
+//        Реализуйте функцию, которая находит корень из числа. Если число отрицательное, выбрасывайте IllegalArgumentException.
+//        Scanner in = new Scanner(System.in);
+//        double a = in.nextDouble();
+//        System.out.println(findSqrt(a));
 //
-//        }
-//        System.out.print(sum);
-
-        /*Задача 9: Реверс строки
-        Условие:
-        Пользователь вводит строку. Программа должна вывести эту строку в обратном порядке.*/
-//        Scanner scan = new Scanner(System.in);
-//        String str = scan.nextLine();
-//        char[] arr = str.toCharArray();
-//        for (int j = arr.length-1; j>=0; j--) System.out.print(arr[j] );
-
-
-        /*Задача 10: Количество цифр в числе
-        Условие:
-        Пользователь вводит целое число. Программа должна вывести количество цифр в этом числе.*/
-//        Scanner scan = new Scanner(System.in);
-//        int n = scan.nextInt();
-//        int result = 0;
-//        if (n==0) System.out.print("1");
-//        else {
-//            while (n > 0) {
+//        6. Факториал
+//        Напишите функцию, которая вычисляет факториал числа. Если число отрицательное, выбрасывайте исключение.
+//        Scanner in = new Scanner(System.in);
+//        int a = in.nextInt();
+//        System.out.println(factorial(a));
 //
-//                result += 1;
-//                n = n / 10;
-//            }
-//            System.out.print(result);
-//        }
+//        7. Проверка массива на нули
+//        Создайте функцию, которая проверяет массив на наличие нулей. Если в массиве есть нули, выбрасывайте исключение.
+//        //int[] arr = {2, 56, -3, 90};
+//        int[] arr1 = {4, 81, 0, 7};
+//        //System.out.println(checkArray(arr));
+//        System.out.println(checkArray(arr1));
 
-
-        /*Задача 11: Факториал числа
-        Условие:
-        Пользователь вводит целое число N. Программа должна вычислить факториал этого числа (N!).*/
-//        Scanner scan = new Scanner(System.in);
-//        int n = scan.nextInt();
-//        int result = 1;
-//        for (int i = n; i>1; i--) {
-//            result *=i;
-//        }
-//        System.out.print(result);
-
-        /*Задача 12: Сумма цифр числа
-        Условие:
-        Пользователь вводит целое число. Программа должна найти сумму всех цифр этого числа.*/
-//        Scanner scan = new Scanner(System.in);
-//        int n = scan.nextInt();
-//        int sum = 0;
 //
-//        while (n>0) {
-//            sum += n%10;
-//            n = n / 10;
-//        }
-//        System.out.print(sum);
-
-        /*Задача 13: Палиндром
-        Условие:
-        Пользователь вводит строку. Программа должна проверить, является ли эта строка палиндромом (читается одинаково слева направо и справа налево).*/
-//        Scanner scan = new Scanner(System.in);
-//        String str = scan.nextLine();
-//        char[] arr = str.toCharArray();
-//        String result  = "";
-//        for (int j = arr.length-1; j>=0; j--) {
-//            result += arr[j];
-//        }
-//        if (result.equalsIgnoreCase(str)) System.out.print("Данная строка является палиндромом.");
-//        else System.out.print("Данная строка не является палиндромом.");
-
-        /*Задача 14: Найти максимальное число в массиве
-        Условие:
-        Пользователь вводит размер массива и элементы массива. Программа должна найти и вывести максимальное число в массиве.*/
-//        Scanner scan = new Scanner(System.in);
-//        int a = scan.nextInt();
-//        int[] arr = new int[a];
-//        for (int i = 0; i<arr.length; i++) {
-//            arr[i] = scan.nextInt();
-//        }
-//        int max = arr[0];
-//        for (int i = 0; i<arr.length; i++) {
-//            if (arr[i]>=max) max = arr[i];
-//        }
-//        System.out.println(max);
-
-        /*Задача 15: Сумма всех элементов массива
-        Условие:
-        Пользователь вводит размер массива и его элементы. Программа должна вычислить и вывести сумму всех элементов массива.*/
-//        Scanner scan = new Scanner(System.in);
-//        int a = scan.nextInt();
-//        int[] arr = new int[a];
-//        int sum = 0;
-//        for (int i = 0; i<arr.length; i++) {
-//            arr[i] = scan.nextInt();
-//            sum += arr[i];
-//        }
-//        System.out.println(sum);
-
-        /*Задача 16: Количество положительных и отрицательных чисел
-        Условие:
-        Пользователь вводит размер массива и его элементы. Программа должна подсчитать и вывести количество положительных и отрицательных чисел в массиве.*/
-//        Scanner scan = new Scanner(System.in);
-//        int a = scan.nextInt();
-//        int[] arr = new int[a];
-//        int positive = 0;
-//        int negative = 0;
-//        for (int i = 0; i<arr.length; i++) {
-//            arr[i] = scan.nextInt();
-//            if (arr[i]> 0) positive += 1;
-//            else if (arr[i]< 0) negative += 1;
-//        }
-//        System.out.printf("Количество положительных чисел: %d. Количество отрицательных чисел: %d. \n", positive, negative);
+//        8. Калькулятор возведения в степень
+//        Реализуйте функцию, которая возводит число в степень. Если степень отрицательная, выбрасывайте исключение.
+//        Scanner in = new Scanner(System.in);
+//        int a = in.nextInt(); // Число
+//        int b = in.nextInt(); // Степень
+//        System.out.println(getPow(a, b));
 
 
-        /*Задача 17: Простые числа в диапазоне
-        Условие:
-        Пользователь вводит два целых числа A и B. Программа должна вывести все простые числа в этом диапазоне (включительно).*/
-//        Scanner scan = new Scanner(System.in);
-//        int a = scan.nextInt();
-//        int b = scan.nextInt();
-//        for (int i = a; i <= b; i++) {
-//            for (int j = 2; j <= i; j++) {
-//                if (j < i  & i % j == 0) {
-//                    break;
-//                }
-//                if (i % j == 0) {
-//                    System.out.printf("Число %d является простым. \n", i);
-//                }
-//            }
-//        }
-
-        /*Задача 18: Подсчет гласных и согласных в строке
-        Условие:
-        Пользователь вводит строку. Программа должна подсчитать и вывести количество гласных и согласных букв в этой строке.*/
-//        Scanner scan = new Scanner(System.in);
-//        String str = scan.nextLine().toLowerCase();
-//        String glas = "аиуыёоеэюя";
-//        int gl = 0;
-//        int sogl = 0;
 //
-//        for (char x : str.toCharArray()){
-//            if (x == ' ') continue;
-//            if (glas.indexOf(x) == -1) sogl++;
-//            else gl++;
-//        }
-//        System.out.printf("Количество гласных: %d. Количество согласных: %d.", gl, sogl);
+//        9. Обрезка строки
+//        Напишите функцию, которая принимает строку и число символов. Функция должна возвращать строку, обрезанную до указанного числа символов. Если число символов больше длины строки, выбрасывайте исключение.
+//        Scanner in = new Scanner(System.in);
+//        String str = in.nextLine();
+//        int a = in.nextInt();
+//        System.out.println(cutString(str, a));
+//
+//
+//
+//        10. Поиск элемента в массиве
+//        Напишите функцию, которая ищет элемент в массиве. Если элемент не найден, выбрасывайте исключение с сообщением об ошибке.
+//        Scanner in = new Scanner(System.in);
+//        int[] arr = {2, 7, 3, 8};
+//        int a = in.nextInt();
+//        System.out.println(checkElem(arr, a));
+//
+//        11. Конвертация в двоичную систему
+//        Создайте функцию, которая конвертирует целое число в двоичную строку. Если число отрицательное, выбрасывайте исключение.
+//        Scanner in = new Scanner(System.in);
+//        int a = in.nextInt();
+//        System.out.println(convToBinary(a));
 
-        /*Задача 19: Перестановка слов в строке
-        Условие:
-        Пользователь вводит строку, состоящую из нескольких слов. Программа должна вывести слова в обратном порядке.*/
-//        Scanner scan = new Scanner(System.in);
-//        String[] str = scan.nextLine().split(" ");
-//        for (int i = str.length-1; i >= 0 ; i--) {
-//            System.out.print(str[i] + " ");
-//        }
-        /*Задача 20: Число Армстронга
-        Условие:
-        Пользователь вводит целое число. Программа должна проверить, является ли это число числом Армстронга (сумма цифр в степени, равной количеству цифр, равна самому числу).*/
-//        Scanner scan = new Scanner(System.in);
-//        int a = scan.nextInt();
-//        int b = a;
-//        int c = a;
-//        int count = 0;
-//        int sum = 0;
-//        while (b>0) {
-//            count++;
-//            b /= 10;
 //
-//        }
-//        while (c>0){
-//            sum += Math.pow(c%10, count);
-//            c /= 10;
+//        12. Проверка делимости
+//        Реализуйте функцию, которая принимает два числа и проверяет, делится ли первое число на второе. Если второе число равно нулю, выбрасывайте ArithmeticException.
+//        Scanner in = new Scanner(System.in);
+//        int a = in.nextInt();
+//        int b = in.nextInt();
+//        System.out.println(checkDel(a, b));
+
 //
-//        }
-//        if (sum == a) System.out.printf("Число %d является числом Армстронга.", a);
-//        else System.out.printf("Число %d не является числом Армстронга.", a);
+//        13. Чтение элемента списка
+//        Напишите функцию, которая возвращает элемент списка по индексу. Если индекс выходит за пределы списка, выбрасывайте IndexOutOfBoundsException.
+//        Scanner in = new Scanner(System.in);
+//        int[] arr = {2, 7, 3, 8};
+//        int a = in.nextInt();
+//        System.out.println(getEl(arr, a));
+
+
+//
+//        14. Парольная проверка
+//        Создайте функцию для проверки сложности пароля. Если пароль содержит менее 8 символов, выбрасывайте исключение WeakPasswordException.
+//        Scanner in = new Scanner(System.in);
+//        String str = in.nextLine();
+//        System.out.println(checkPass(str));
+
+
+//
+//        15. Проверка даты
+//        Напишите функцию, которая проверяет, является ли строка корректной датой в формате "dd.MM.yyyy". Если формат неверен, выбрасывайте DateTimeParseException.
+//        Scanner in = new Scanner(System.in);
+//        String str = in.nextLine();
+//        System.out.println(checkDate(str));
+
+//
+//        16. Конкатенация строк
+//        Реализуйте функцию, которая объединяет две строки. Если одна из строк равна null, выбрасывайте NullPointerException.
+//        Scanner in = new Scanner(System.in);
+//        String str1 = "gfhf";
+//        String str2 = null;
+//        System.out.println(strUnion(str1, str2));
+
+//
+//        17. Остаток от деления
+//        Создайте функцию, которая возвращает остаток от деления двух чисел. Если второе число равно нулю, выбрасывайте исключение.
+//        Scanner in = new Scanner(System.in);
+//        int a = in.nextInt();
+//        int b = in.nextInt();
+//        System.out.println(checkDelOst(a, b));
+
+//
+//        18. Квадратный корень
+//        Реализуйте функцию, которая находит квадратный корень числа. Если число отрицательное, выбрасывайте исключение.
+//        Scanner in = new Scanner(System.in);
+//        double a = in.nextDouble();
+//        System.out.println(getSqrt(a));
+
+//
+//        19. Конвертер температуры
+//        Напишите функцию, которая переводит температуру из Цельсия в Фаренгейт. Если температура меньше абсолютного нуля, выбрасывайте исключение.
+//        Scanner in = new Scanner(System.in);
+//        double temp = in.nextDouble();
+//        System.out.println(convertTemp(temp));
+
+
+//
+//        20. Проверка строки на пустоту
+//        Создайте функцию, которая проверяет, является ли строка пустой или null. Если строка пустая или равна null, выбрасывайте исключение.
+//        String str1 = "ghjk";
+//        //String str2 = null;
+//        String str3 = "";
+//        System.out.println(strNullOrEmpty(str1));
+//        //System.out.println(strNullOrEmpty(str2));
+//        System.out.println(strNullOrEmpty(str3));
 
     }
+
+    // Функции для задач
+
+
+    //    1. Функция для нахождения максимума
+    static int getMax(int num1, int num2) throws Exception {
+        if (num1 == num2) {
+            throw new Exception("Максимального значения не существует. Числа равны.");
+        }
+
+        return Math.max(num1, num2);
+    }
+
+    //     2.Функция для деления двух чисел.
+    static double division(double num1, double num2) throws Exception {
+        if (num2 == 0) {
+            throw new ArithmeticException("Делитель не может равняться нулю.");
+        }
+        return num1 / num2;
+    }
+
+    //    3. Функция, которая принимает строку и пытается конвертировать её в целое число.
+    static int stringConvert(String str1) {
+        try {
+            return Integer.parseInt(str1);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //    4. Создайте функцию, которая принимает возраст.
+    static String age(int age1) {
+        if (0 > age1 | age1 > 150) {
+            throw new IllegalArgumentException();
+        }
+        return Integer.toString(age1);
+    }
+
+    //5. Реализуйте функцию, которая находит корень из числа.
+    static double findSqrt(double n) {
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+        return Math.sqrt(n);
+    }
+
+    //    6.Напишите функцию, которая вычисляет факториал числа.
+    static int factorial(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+        int fact = 1;
+        for (int i = n; i > 1; i--) {
+            fact *= i;
+        }
+        return fact;
+    }
+
+    //7. Создайте функцию, которая проверяет массив на наличие нулей.
+    static String checkArray(int[] arr) {
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arr[i] == 0) throw new IllegalArgumentException("В массиве содержится нуль.");
+        }
+//        return Arrays.toString(arr);
+        return Arrays.toString(arr);
+    }
+
+    //    8. Реализуйте функцию, которая возводит число в степень.
+    static double getPow(int a, int b) {
+        if (b < 0) {
+            throw new IllegalArgumentException();
+        }
+        return Math.pow(a, b);
+    }
+
+    //    9. Напишите функцию, которая принимает строку и число символов.
+    static String cutString(String str, int n) {
+        if (n > str.length()) throw new IllegalArgumentException("Число символов больше длины строки.");
+        return str.substring(0, n);
+    }
+
+    //    10. Напишите функцию, которая ищет элемент в массиве.
+    static boolean checkElem(int[] arr, int elem) {
+        for (int id : arr) {
+            if (elem == id) {
+                return true;
+            }
+        }
+        throw new NullPointerException("Элемент не найден.");
+
+    }
+
+    //    11. Создайте функцию, которая конвертирует целое число в двоичную строку.
+    static String convToBinary(int n) {
+        if (n < 0) throw new IllegalArgumentException("Заданное число не может быть отрицательным.");
+        return Integer.toBinaryString(n);
+
+    }
+
+    //    12. Реализуйте функцию, которая принимает два числа и проверяет, делится ли первое число на второе.
+    static int checkDel(int a, int b) {
+        if (b == 0) throw new ArithmeticException("Деление на 0 невозможно.");
+        return a / b;
+
+    }
+
+    //    13. Напишите функцию, которая возвращает элемент списка по индексу.
+    static int getEl(int[] arr, int a) {
+        if (a > arr.length - 1) throw new IndexOutOfBoundsException();
+
+        return arr[a];
+    }
+
+
+    //    14. Создайте функцию для проверки сложности пароля.
+    public static class WeakPasswordException extends RuntimeException {
+        public WeakPasswordException(String message) {
+            super(message);
+        }
+    }
+
+    public static Boolean checkPass(String str) {
+        if (str.length() < 8) throw new WeakPasswordException("Пароль содержит менее 8 символов");
+        return true;
+    }
+    //    15. Напишите функцию, которая проверяет, является ли строка корректной датой в формате "dd.MM.yyyy".
+    public static boolean checkDate(String dateStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        try {
+            LocalDate date = LocalDate.parse(dateStr, formatter);
+            return true;
+        } catch (DateTimeParseException ex) {
+            throw ex;
+        }
+    }
+    //    16. Реализуйте функцию, которая объединяет две строки.
+    public static String strUnion(String str1, String str2){
+        if (str1 == null | str2 == null) throw new NullPointerException("Строка равна null.");
+        return  str1+str2;
+    }
+    //    17. Создайте функцию, которая возвращает остаток от деления двух чисел.
+    static int checkDelOst(int a, int b) {
+        if (b == 0) throw new ArithmeticException("Деление на 0 невозможно.");
+        return a % b;
+
+    }
+    //    18. Реализуйте функцию, которая находит квадратный корень числа.
+    static double getSqrt(double n) {
+        if (n < 0) {
+            throw new IllegalArgumentException();
+        }
+        return Math.sqrt(n);
+    }
+    //    19. Напишите функцию, которая переводит температуру из Цельсия в Фаренгейт.
+    public static double convertTemp(double temp){
+        if(temp< -273.15) throw new InputMismatchException("Значение меньше абсолютного нуля.");
+        return temp*1.8+32;
+    }
+    //    20. Создайте функцию, которая проверяет, является ли строка пустой или null.
+    public static boolean strNullOrEmpty(String str1) {
+        if (str1 == "" | str1 == null) throw new NullPointerException("Строка пустая или равна null.");
+        return true;
+    }
+
 }
