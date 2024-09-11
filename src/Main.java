@@ -11,10 +11,10 @@ public class Main {
 
 //        1. Функция для нахождения максимума
 ////        Напишите функцию, которая принимает два числа и возвращает максимальное из них. Если числа равны, выбрасывайте исключение с сообщением об ошибке.
-//        Scanner in = new Scanner(System.in);
-//        int a = in.nextInt();
-//        int b = in.nextInt();
-//        System.out.println(getMax(a, b));
+        Scanner in = new Scanner(System.in);
+        int a = in.nextInt();
+        int b = in.nextInt();
+        System.out.println(getMax(a, b));
 
 
 //        2. Калькулятор деления
