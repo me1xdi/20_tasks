@@ -241,40 +241,40 @@ public class Main {
 
 //11. Класс "Магазин"
 //    Реализуйте класс Product с полями name, price, и quantity. Создайте класс Store, который содержит список продуктов и методы для добавления, удаления и поиска товаров по имени.
-    class Product{
-        private String name;
-        private double price;
-        private int quantity;
-        public Product(String name, double price, int quantity){
-            this.name=name;
-            this.price=price;
-            this.quantity=quantity;
-        }
-        public String getName(){
-            return name;
-        }
-    }
-    class Store{
-        private  ArrayList<Product> products;
-        public Store(ArrayList<Product> products){
-            this.products=products;
-        }
-        void addProduct(Product product){
-            products.add(product);
-        }
-        void removeProduct(Product product){
-            products.remove(product);
-        }
-        Product searchName(String name){
-            for (Product product:products){
-                if (product.name.equals(name)){
-                    return product;
-                }
-
-            }
-            return null;
-        }
-    }
+//    class Product{
+//        private String name;
+//        private double price;
+//        private int quantity;
+//        public Product(String name, double price, int quantity){
+//            this.name=name;
+//            this.price=price;
+//            this.quantity=quantity;
+//        }
+//        public String getName(){
+//            return name;
+//        }
+//    }
+//    class Store{
+//        private  ArrayList<Product> products;
+//        public Store(ArrayList<Product> products){
+//            this.products=products;
+//        }
+//        void addProduct(Product product){
+//            products.add(product);
+//        }
+//        void removeProduct(Product product){
+//            products.remove(product);
+//        }
+//        Product searchName(String name){
+//            for (Product product:products){
+//                if (product.name.equals(name)){
+//                    return product;
+//                }
+//
+//            }
+//            return null;
+//        }
+//    }
 
 //12. Интерфейс "Платежная система"
 //    Создайте интерфейс PaymentSystem с методами pay() и refund(). Реализуйте классы CreditCard и PayPal, которые реализуют этот интерфейс.
@@ -368,28 +368,274 @@ public class Main {
 
 //            16. Перегрузка операторов: Матрица
 //    Создайте класс Matrix, представляющий двумерную матрицу. Реализуйте методы для сложения и умножения матриц. Продемонстрируйте перегрузку методов.
-    class Matrix{
-        private int[][] matrix;
-        public int[][] getMatrix(){
-            return matrix;
-        }
-        public Matrix(int rows, int col){
-            matrix = new int[rows][col];
+        public class Matrix {
+            private int[][] matrix;
+
+            public Matrix(int rows, int cols) {
+                matrix = new int[rows][cols];
+            }
+
+            public void setValue(int row, int col, int value) {
+                matrix[row][col] = value;
+            }
+
+            public int getValue(int row, int col) {
+                return matrix[row][col];
+            }
+
+            public int getRows() {
+                return matrix.length;
+            }
+
+            public int getCols() {
+                return matrix[0].length;
+            }
+
+            // Метод для сложения двух матриц
+            public Matrix add(Matrix other) {
+                if (this.getRows() != other.getRows() || this.getCols() != other.getCols()) {
+                    throw new IllegalArgumentException("Matrices must have the same dimensions for addition.");
+                }
+                Matrix result = new Matrix(this.getRows(), this.getCols());
+                for (int i = 0; i < this.getRows(); i++) {
+                    for (int j = 0; j < this.getCols(); j++) {
+                        result.setValue(i, j, this.getValue(i, j) + other.getValue(i, j));
+                    }
+                }
+                return result;
+            }
+
+            // Перегрузка метода для сложения с числом
+            public Matrix add(int scalar) {
+                Matrix result = new Matrix(this.getRows(), this.getCols());
+                for (int i = 0; i < this.getRows(); i++) {
+                    for (int j = 0; j < this.getCols(); j++) {
+                        result.setValue(i, j, this.getValue(i, j) + scalar);
+                    }
+                }
+                return result;
+            }
+
+            // Метод для умножения двух матриц
+            public Matrix multiply(Matrix other) {
+                if (this.getCols() != other.getRows()) {
+                    throw new IllegalArgumentException("Number of columns of the first matrix must equal number of rows of the second matrix.");
+                }
+                Matrix result = new Matrix(this.getRows(), other.getCols());
+                for (int i = 0; i < this.getRows(); i++) {
+                    for (int j = 0; j < other.getCols(); j++) {
+                        for (int k = 0; k < this.getCols(); k++) {
+                            result.setValue(i, j, result.getValue(i, j) + this.getValue(i, k) * other.getValue(k, j));
+                        }
+                    }
+                }
+                return result;
+            }
+
+            // Метод для умножения матрицы на скаляр
+            public Matrix multiply(int scalar) {
+                Matrix result = new Matrix(this.getRows(), this.getCols());
+                for (int i = 0; i < this.getRows(); i++) {
+                    for (int j = 0; j < this.getCols(); j++) {
+                        result.setValue(i, j, this.getValue(i, j) * scalar);
+                    }
+                }
+                return result;
+            }
+
+            // Метод для отображения матрицы
+            public void display() {
+                for (int[] row : matrix) {
+                    for (int value : row) {
+                        System.out.print(value + " ");
+                    }
+                    System.out.println();
+                }
+            }
 
         }
-    }
 //
 //17. Создание игры с использованием ООП
 //    Реализуйте классы для небольшой текстовой игры, такие как Player, Enemy, Weapon, с полями и методами, описывающими их поведение.
+    public class Player {
+        private String name;
+        private int health;
+        private Weapon weapon;
+
+        public Player(String name, int health, Weapon weapon) {
+            this.name = name;
+            this.health = health;
+            this.weapon = weapon;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getHealth() {
+            return health;
+        }
+
+        public void attack(Enemy enemy) {
+            System.out.println(name + " атакует " + enemy.getName() + " с " + weapon.getName() + " с " + weapon.getDamage() + " уроном!");
+            enemy.takeDamage(weapon.getDamage());
+        }
+
+        public void takeDamage(int damage) {
+            health -= damage;
+            if (health < 0) health = 0;
+        }
+    }
+    public class Weapon {
+            private String name;
+            private int damage;
+
+            public Weapon(String name, int damage) {
+                this.name = name;
+                this.damage = damage;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public int getDamage() {
+                return damage;
+            }
+        }
+    public class Enemy {
+        private String name;
+        private int health;
+        private int attack;
+
+        public Enemy(String name, int health, int power) {
+            this.name = name;
+            this.health = health;
+            this.attack = power;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getHealth() {
+            return health;
+        }
+
+        public void takeDamage(int damage) {
+            health -= damage;
+            if (health < 0) health = 0;
+        }
+
+        public void attack(Player player) {
+            System.out.println(name + " атакует " + player.getName() + " с " + attack + " уроном.");
+            player.takeDamage(attack);
+        }
+    }
+
 //
 //18. Автоматизированная система заказов
 //    Создайте классы Order, Customer, и Product. Реализуйте систему, где можно добавлять заказы, отображать общую стоимость заказа и просматривать историю заказов.
-//
+    class Order{
+        private ArrayList<Product> products = new ArrayList<>();
+
+        public Order(ArrayList<Product> products){
+            this.products = products;
+        }
+
+        public void addProduct(Product product) {
+            products.add(product);
+        }
+
+        public void removeProduct(Product product) {
+            products.remove(product);
+        }
+
+        public void getProductsList(){
+            for(Product product: products) System.out.println(product.getName());
+        }
+
+        public double totalPrice() {
+            double total = 0;
+            for (Product product : products) total += product.getPrice();
+            return total;
+        }
+    }
+
+        class Customer{
+            private String name;
+
+            public Customer(String name) {
+                this.name = name;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public Order MakeOrder(ArrayList<Product> order){
+                return new Order(order);
+            }
+        }
+
+        class Product{
+            private String name;
+            private double price;
+
+            public Product(String name, double price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            public double getPrice() {
+                return price;
+            }
+
+            public String getName(){
+                return name;
+            }
+        }
+
 //            19. Наследование: Электроника
 //    Создайте класс Device с полем brand и методами turnOn() и turnOff(). Реализуйте классы Smartphone и Laptop, которые наследуют от Device и добавляют уникальные методы, например, takePhoto() для смартфона.
-//
+    class Device{
+        private String brand;
+        public Device(String brand){
+            this.brand=brand;
+        }
+        void turnOn(){
+            System.out.println(brand + "включен!");
+        }
+        void turnOff(){
+            System.out.println(brand + "выключен!");
+        }
+        public String getBrand(){
+            return brand;
+        }
+    }
+    class Smartphone extends Device{
+
+        public Smartphone(String brand) {
+            super(brand);
+        }
+        void takePhoto(){
+            System.out.println("Улыбнитесь на камеру!");
+        }
+    }
+    class Laptop extends Device{
+
+        public Laptop(String brand) {
+            super(brand);
+        }
+        void openMSWord(){
+            System.out.println("Откройте проект!");
+        }
+    }
+
 //            20. Игра "Крестики-нолики"
 //    Разработайте классы для игры "Крестики-нолики". Создайте класс Game, который управляет логикой игры, и классы Player, описывающие поведение игроков.
+
+
 //
 
     public static void main(String[] args) {
