@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.UUID;
+import java.util.Scanner;
 
 public class Main {
 //    1. Класс "Человек"
@@ -391,7 +392,6 @@ public class Main {
                 return matrix[0].length;
             }
 
-            // Метод для сложения двух матриц
             public Matrix add(Matrix other) {
                 if (this.getRows() != other.getRows() || this.getCols() != other.getCols()) {
                     throw new IllegalArgumentException("Matrices must have the same dimensions for addition.");
@@ -405,7 +405,6 @@ public class Main {
                 return result;
             }
 
-            // Перегрузка метода для сложения с числом
             public Matrix add(int scalar) {
                 Matrix result = new Matrix(this.getRows(), this.getCols());
                 for (int i = 0; i < this.getRows(); i++) {
@@ -416,7 +415,6 @@ public class Main {
                 return result;
             }
 
-            // Метод для умножения двух матриц
             public Matrix multiply(Matrix other) {
                 if (this.getCols() != other.getRows()) {
                     throw new IllegalArgumentException("Number of columns of the first matrix must equal number of rows of the second matrix.");
@@ -432,7 +430,6 @@ public class Main {
                 return result;
             }
 
-            // Метод для умножения матрицы на скаляр
             public Matrix multiply(int scalar) {
                 Matrix result = new Matrix(this.getRows(), this.getCols());
                 for (int i = 0; i < this.getRows(); i++) {
@@ -443,7 +440,6 @@ public class Main {
                 return result;
             }
 
-            // Метод для отображения матрицы
             public void display() {
                 for (int[] row : matrix) {
                     for (int value : row) {
@@ -457,81 +453,81 @@ public class Main {
 //
 //17. Создание игры с использованием ООП
 //    Реализуйте классы для небольшой текстовой игры, такие как Player, Enemy, Weapon, с полями и методами, описывающими их поведение.
-    public class Player {
-        private String name;
-        private int health;
-        private Weapon weapon;
-
-        public Player(String name, int health, Weapon weapon) {
-            this.name = name;
-            this.health = health;
-            this.weapon = weapon;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getHealth() {
-            return health;
-        }
-
-        public void attack(Enemy enemy) {
-            System.out.println(name + " атакует " + enemy.getName() + " с " + weapon.getName() + " с " + weapon.getDamage() + " уроном!");
-            enemy.takeDamage(weapon.getDamage());
-        }
-
-        public void takeDamage(int damage) {
-            health -= damage;
-            if (health < 0) health = 0;
-        }
-    }
-    public class Weapon {
-            private String name;
-            private int damage;
-
-            public Weapon(String name, int damage) {
-                this.name = name;
-                this.damage = damage;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public int getDamage() {
-                return damage;
-            }
-        }
-    public class Enemy {
-        private String name;
-        private int health;
-        private int attack;
-
-        public Enemy(String name, int health, int power) {
-            this.name = name;
-            this.health = health;
-            this.attack = power;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getHealth() {
-            return health;
-        }
-
-        public void takeDamage(int damage) {
-            health -= damage;
-            if (health < 0) health = 0;
-        }
-
-        public void attack(Player player) {
-            System.out.println(name + " атакует " + player.getName() + " с " + attack + " уроном.");
-            player.takeDamage(attack);
-        }
-    }
+//    public class Player {
+//        private String name;
+//        private int health;
+//        private Weapon weapon;
+//
+//        public Player(String name, int health, Weapon weapon) {
+//            this.name = name;
+//            this.health = health;
+//            this.weapon = weapon;
+//        }
+//
+//        public String getName() {
+//            return name;
+//        }
+//
+//        public int getHealth() {
+//            return health;
+//        }
+//
+//        public void attack(Enemy enemy) {
+//            System.out.println(name + " атакует " + enemy.getName() + " с " + weapon.getName() + " с " + weapon.getDamage() + " уроном!");
+//            enemy.takeDamage(weapon.getDamage());
+//        }
+//
+//        public void takeDamage(int damage) {
+//            health -= damage;
+//            if (health < 0) health = 0;
+//        }
+//    }
+//    public class Weapon {
+//            private String name;
+//            private int damage;
+//
+//            public Weapon(String name, int damage) {
+//                this.name = name;
+//                this.damage = damage;
+//            }
+//
+//            public String getName() {
+//                return name;
+//            }
+//
+//            public int getDamage() {
+//                return damage;
+//            }
+//        }
+//    public class Enemy {
+//        private String name;
+//        private int health;
+//        private int attack;
+//
+//        public Enemy(String name, int health, int power) {
+//            this.name = name;
+//            this.health = health;
+//            this.attack = power;
+//        }
+//
+//        public String getName() {
+//            return name;
+//        }
+//
+//        public int getHealth() {
+//            return health;
+//        }
+//
+//        public void takeDamage(int damage) {
+//            health -= damage;
+//            if (health < 0) health = 0;
+//        }
+//
+//        public void attack(Player player) {
+//            System.out.println(name + " атакует " + player.getName() + " с " + attack + " уроном.");
+//            player.takeDamage(attack);
+//        }
+//    }
 
 //
 //18. Автоматизированная система заказов
@@ -634,9 +630,111 @@ public class Main {
 
 //            20. Игра "Крестики-нолики"
 //    Разработайте классы для игры "Крестики-нолики". Создайте класс Game, который управляет логикой игры, и классы Player, описывающие поведение игроков.
+    public class Player {
+        private String name;
+        private char symbol;
 
+        public Player(String name, char symbol) {
+            this.name = name;
+            this.symbol = symbol;
+        }
 
-//
+        public String getName() {
+            return name;
+        }
+
+        public char getSymbol() {
+            return symbol;
+        }
+    }
+
+    public class Game {
+        private char[][] board;
+        private final int size = 3;
+        private Player player1;
+        private Player player2;
+        private Player currentPlayer;
+
+        public Game(Player player1, Player player2) {
+            this.board = new char[size][size];
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    board[i][j] = ' ';
+                }
+            }
+            this.player1 = player1;
+            this.player2 = player2;
+            this.currentPlayer = player1;
+        }
+
+        public void play() {
+            Scanner scan = new Scanner(System.in);
+            while (true) {
+                printBoard();
+                System.out.println(currentPlayer.getName() + "совершает ход. Введите номер строки и столбца: ");
+                int row = scan.nextInt() - 1;
+                int col = scan.nextInt() - 1;
+
+                if (makeMove(row, col)) {
+                    if (checkWin(currentPlayer.getSymbol())) {
+                        printBoard();
+                        System.out.println(currentPlayer.getName() + " победил!");
+                        break;
+                    }
+                    if (isFull()) {
+                        printBoard();
+                        System.out.println("Поздравляю! У вас ничья!");
+                        break;
+                    }
+                    currentPlayer = (currentPlayer == player1) ? player2 : player1;
+                } else {
+                    System.out.println("Неверный ход. Попробуйте снова.");
+                }
+            }
+            scan.close();
+        }
+
+        private boolean makeMove(int row, int col) {
+            if (row >= 0 && row < size && col >= 0 && col < size && board[row][col] == ' ') {
+                board[row][col] = currentPlayer.getSymbol();
+                return true;
+            }
+            return false;
+        }
+
+        private void printBoard() {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    System.out.print(board[i][j]);
+                    if (j < size - 1) System.out.print("|");
+                }
+                System.out.println();
+                if (i < size - 1) System.out.println("-----");
+            }
+        }
+
+        private boolean checkWin(char playerSymbol) {
+            for (int i = 0; i < size; i++) {
+                if ((board[i][0] == playerSymbol && board[i][1] == playerSymbol && board[i][2] == playerSymbol) ||
+                        (board[0][i] == playerSymbol && board[1][i] == playerSymbol && board[2][i] == playerSymbol)) {
+                    return true;
+                }
+            }
+            return (board[0][0] == playerSymbol && board[1][1] == playerSymbol && board[2][2] == playerSymbol) ||
+                    (board[0][2] == playerSymbol && board[1][1] == playerSymbol && board[2][0] == playerSymbol);
+        }
+
+        private boolean isFull() {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (board[i][j] == ' ') {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
 
     public static void main(String[] args) {
 
